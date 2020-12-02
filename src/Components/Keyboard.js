@@ -14,7 +14,7 @@ const Keyboard = () => {
     let number = useSelector(state => state.number, shallowEqual);
     const operator = useSelector(state => state.operator, shallowEqual);
     const answer = useSelector(state => state.answer, shallowEqual);
-    
+
 
     const dispatch = useDispatch();
 
@@ -31,7 +31,29 @@ const Keyboard = () => {
     }
 
     const addPoint = () => {
+        if (!number) {
+            number = "0.";
+        } else if (!number.includes('.')) {
+            number += '.';
+        }
+        dispatch(saveAnswer(answer));
+        dispatch(saveNumber(number));
+    }
 
+    const makeOposite = () => {
+        if(!!answer && !number){
+            number = answer;
+        }
+        console.log({number})
+        if (!!number && number !== "0") {
+            if (number > "0") {
+                number = "-" + number;
+            } else {
+                number = number.substr(1);
+            }
+        }
+        dispatch(saveAnswer(number));
+        dispatch(saveNumber(number));
     }
 
 
@@ -53,9 +75,9 @@ const Keyboard = () => {
                 <Button content="3" width="33" getValue={readValue}></Button>
             </Row>
             <Row style={height}>
-                <Button content="+/-" width="33"></Button>
+                <Button content="+/-" width="33" getValue={makeOposite}></Button>
                 <Button content="0" width="34" getValue={readValue}></Button>
-                <Button content="." width="33"></Button>
+                <Button content="." width="33" getValue={addPoint}></Button>
             </Row>
         </div>
     )

@@ -6,8 +6,7 @@ const initialState = {
     operator: null,
     prevOperator: null,
     answer: null,
-    prevAnswer: null,
-    operationStared: false
+    prevAnswer: null
 }
 
 export const calculate = createAsyncThunk(
@@ -69,6 +68,14 @@ const reducerSlice = createSlice({
         saveAnswer(state, action) {
             state.prevAnswer = action.payload;
             state.answer = initialState.answer;
+        },
+        equal(state, action) {
+            state.answer = action.payload;
+            state.number = initialState.number;
+            state.prevNumber = initialState.prevNumber;
+            state.prevAnswer = initialState.prevAnswer;
+            state.operator = initialState.operator;
+            state.prevOperator = initialState.prevOperator;
         }
     },
     extraReducers: {
@@ -80,5 +87,12 @@ const reducerSlice = createSlice({
     }
 })
 
-export const { saveNumber, savePrevNumber, startOperation, saveOperator, saveAnswer } = reducerSlice.actions;
+export const {
+    saveNumber,
+    savePrevNumber,
+    startOperation,
+    saveOperator,
+    saveAnswer,
+    equal
+} = reducerSlice.actions;
 export default reducerSlice.reducer;
