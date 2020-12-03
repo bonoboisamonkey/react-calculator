@@ -10,9 +10,7 @@ const Keyboard = () => {
         height: '25%'
     }
 
-    const started = useSelector(state => state.operationStared, shallowEqual);
     let number = useSelector(state => state.number, shallowEqual);
-    const operator = useSelector(state => state.operator, shallowEqual);
     const answer = useSelector(state => state.answer, shallowEqual);
 
 

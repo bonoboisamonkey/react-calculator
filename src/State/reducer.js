@@ -66,14 +66,12 @@ const reducerSlice = createSlice({
             state.prevOperator = action.payload;
         },
         saveAnswer(state, action) {
-            state.prevAnswer = action.payload;
             state.answer = initialState.answer;
         },
         equal(state, action) {
             state.answer = action.payload;
             state.number = initialState.number;
             state.prevNumber = initialState.prevNumber;
-            state.prevAnswer = initialState.prevAnswer;
             state.operator = initialState.operator;
             state.prevOperator = initialState.prevOperator;
         }
